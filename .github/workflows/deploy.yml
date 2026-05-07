@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: 22
         env:
-          SITE: https://your-username.github.io
-          BASE_PATH: /miyuki-crystal-flower
+          SITE: https://mikakami1025.github.io
+          BASE_PATH: /desktop-tutorial
 
   deploy:
     needs: build

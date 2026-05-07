@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-開發伺服器通常會在 `http://localhost:4321/miyuki-crystal-flower/`。
+開發伺服器通常會在 `http://localhost:4321/desktop-tutorial/`。
 
 ## 建置與預覽
 
