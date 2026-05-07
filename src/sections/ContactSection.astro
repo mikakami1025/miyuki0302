@@ -20,9 +20,9 @@ const mapHref = `https://maps.google.com/?q=${encodeURIComponent(contactInfo.add
 ---
 
 <section class="section contact-section" id="contact">
-  <div class="container contact-grid">
-    <div class="contact-copy">
-      <SectionHeading eyebrow="Contact" title="聯絡我們" align="left" />
+  <div class="container">
+    <SectionHeading eyebrow="Contact" title="聯絡我們" align="left" />
+    <div class="contact-grid">
       <div class="contact-details" aria-label="聯絡資訊">
         <a href={mapHref}>
           <span>地址</span>
@@ -37,36 +37,36 @@ const mapHref = `https://maps.google.com/?q=${encodeURIComponent(contactInfo.add
           <strong>{contactInfo.email}</strong>
         </a>
       </div>
-    </div>
 
-    <div class="social-panel" aria-label="社群與購物連結">
-      <p class="eyebrow">Social</p>
-      <h3>追蹤作品與課程消息</h3>
-      <div class="social-icon-grid">
-        {socialLinks.map((link) => (
-          <a class={`social-icon-link social-icon-link--${link.type}`} href={link.url} target="_blank" rel="noreferrer">
-            {link.type === 'facebook' && (
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M14.2 8.4V6.9c0-.7.5-.9 1-.9h1.6V3.2C16.5 3.1 15.4 3 14.3 3c-2.5 0-4.2 1.5-4.2 4.2v1.2H7.4v3.1h2.7V21h3.3v-9.5h2.8l.4-3.1h-3Z" />
-              </svg>
-            )}
-            {link.type === 'instagram' && (
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="4" y="4" width="16" height="16" rx="5" />
-                <circle cx="12" cy="12" r="3.4" />
-                <circle cx="16.9" cy="7.2" r="1" />
-              </svg>
-            )}
-            {link.type === 'shopee' && (
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 8.2h10l1.1 11.2H5.9L7 8.2Z" />
-                <path d="M9 8.2V6.8a3 3 0 0 1 6 0v1.4" />
-                <path d="M14.4 12.1c-.7-.5-1.5-.7-2.3-.7-1 0-1.7.4-1.7 1.1 0 1.8 4.2.9 4.2 3.5 0 1.4-1.1 2.4-2.9 2.4-1 0-2-.3-2.8-.9" />
-              </svg>
-            )}
-            <span>{link.label}</span>
-          </a>
-        ))}
+      <div class="social-panel" aria-label="社群與購物連結">
+        <p class="eyebrow">Social</p>
+        <h3>追蹤作品與課程消息</h3>
+        <div class="social-icon-grid">
+          {socialLinks.map((link) => (
+            <a class={`social-icon-link social-icon-link--${link.type}`} href={link.url} target="_blank" rel="noreferrer">
+              {link.type === 'facebook' && (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14.2 8.4V6.9c0-.7.5-.9 1-.9h1.6V3.2C16.5 3.1 15.4 3 14.3 3c-2.5 0-4.2 1.5-4.2 4.2v1.2H7.4v3.1h2.7V21h3.3v-9.5h2.8l.4-3.1h-3Z" />
+                </svg>
+              )}
+              {link.type === 'instagram' && (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="4" width="16" height="16" rx="5" />
+                  <circle cx="12" cy="12" r="3.4" />
+                  <circle cx="16.9" cy="7.2" r="1" />
+                </svg>
+              )}
+              {link.type === 'shopee' && (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 8.2h10l1.1 11.2H5.9L7 8.2Z" />
+                  <path d="M9 8.2V6.8a3 3 0 0 1 6 0v1.4" />
+                  <path d="M14.4 12.1c-.7-.5-1.5-.7-2.3-.7-1 0-1.7.4-1.7 1.1 0 1.8 4.2.9 4.2 3.5 0 1.4-1.1 2.4-2.9 2.4-1 0-2-.3-2.8-.9" />
+                </svg>
+              )}
+              <span>{link.label}</span>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </div>

@@ -289,6 +289,10 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(2rem, 5vw, 4rem);
+  align-items: stretch;
+}
+
+.about-grid {
   align-items: start;
 }
 
@@ -382,6 +386,7 @@ p {
 .classroom-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
   gap: 1rem;
 }
 

@@ -153,17 +153,17 @@ function html() {
     .item-header h3 { margin: 0; font-size: 17px; }
     img.preview { width: 100%; max-height: 170px; object-fit: cover; border: 1px solid var(--line); border-radius: 8px; background: #f8f1ed; }
     .asset-line { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
+    .contact-admin-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 14px; align-items: start; }
     .toast { position: fixed; right: 18px; bottom: 18px; z-index: 10; display: none; max-width: 360px; padding: 12px 14px; color: #fff; background: var(--green); border-radius: 8px; box-shadow: 0 14px 34px rgba(0,0,0,.18); }
     .toast.show { display: block; }
     .help { color: var(--muted); font-size: 13px; }
-    @media (max-width: 860px) { main { grid-template-columns: 1fr; } nav { position: static; height: auto; display: grid; grid-template-columns: repeat(2, 1fr); } .row, .row.three { grid-template-columns: 1fr; } }
+    @media (max-width: 860px) { main { grid-template-columns: 1fr; } nav { position: static; height: auto; display: grid; grid-template-columns: repeat(2, 1fr); } .row, .row.three, .contact-admin-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <header>
     <div>
       <h1>Miyuki 網站本機管理介面</h1>
-      <p>只在你的電腦執行；儲存後會直接更新專案檔案。</p>
     </div>
     <button class="primary" onclick="reloadAll()">重新讀取</button>
   </header>
@@ -267,7 +267,7 @@ function html() {
     }
 
     function renderSite() {
-      el('app').innerHTML = '<div class="panel active card"><h2>網站設定</h2><p class="help">可改網站名稱、SEO 描述、Logo、背景圖片與背景遮罩。</p>' +
+      el('app').innerHTML = '<div class="panel active card"><h2>網站設定</h2>' +
         '<div class="row">'+field('site.name','完整網站名稱')+field('site.shortName','導覽短名稱')+'</div>' +
         area('site.description','SEO 描述',3) +
         '<div class="row">'+imageField('site.logo','Logo','brand')+imageField('site.background.image','全站背景','backgrounds')+'</div>' +
@@ -277,14 +277,14 @@ function html() {
 
     function renderStyle() {
       const keys = ['--color-primary','--color-primary-dark','--color-secondary','--color-accent','--color-ink','--color-muted','--font-body','--font-heading','--text-sm','--text-body','--text-md','--text-lg','--text-xl','--space-section','--radius-card','--shadow-card'];
-      el('app').innerHTML = '<div class="panel active card"><h2>樣式</h2><p class="help">改主色、字型、字級、間距、卡片圓角與陰影。</p><div class="row">' +
+      el('app').innerHTML = '<div class="panel active card"><h2>樣式</h2><div class="row">' +
         keys.map(k => '<label>'+k+'<input value="'+esc(state.cssVars[k] || '')+'" oninput="state.cssVars[\\''+k+'\\']=this.value"></label>').join('') +
         '</div><div class="actions"><button class="primary" onclick="saveSection(\\'styles\\', state.cssVars)">儲存樣式</button></div></div>';
     }
 
     function renderHero() {
       const slides = state.home.heroSlides;
-      el('app').innerHTML = '<div class="card"><h2>首頁輪播</h2><p class="help">新增、刪除、排序、上傳輪播圖片。</p></div><div class="list">' +
+      el('app').innerHTML = '<div class="card"><h2>首頁輪播</h2></div><div class="list">' +
         slides.map((_, i) => slideEditor('home.heroSlides.'+i, 'heroSlides', i, 'hero')).join('') +
         '</div><div class="actions"><button onclick="state.home.heroSlides.push({title:\\'新輪播\\',eyebrow:\\'Hero\\',description:\\'請輸入描述\\',image:\\'assets/hero/hero-01.jpg\\',link:\\'#works\\',linkLabel:\\'了解更多\\'});render()">新增輪播</button><button class="primary" onclick="saveSection(\\'home\\', state.home)">儲存首頁輪播</button></div>';
     }
@@ -312,7 +312,7 @@ function html() {
     }
 
     function renderWorks() {
-      el('app').innerHTML = '<div class="card"><h2>作品輪播</h2><p class="help">左欄日本水晶花藝、右欄工藝盆栽都可上傳圖片與排序。</p></div>' +
+      el('app').innerHTML = '<div class="card"><h2>作品輪播</h2></div>' +
         state.home.workCollections.map((collection, ci) => '<div class="card"><div class="row">'+field('home.workCollections.'+ci+'.title','分類標題')+field('home.workCollections.'+ci+'.key','分類代碼')+'</div>'+area('home.workCollections.'+ci+'.description','分類描述',3)+'<div class="list">'+collection.slides.map((_, si) => workSlide(ci, si)).join('')+'</div><div class="actions"><button onclick="state.home.workCollections['+ci+'].slides.push({image:\\'assets/works/crystal-flowers/crystal-01.jpg\\',title:\\'新作品\\',link:\\'/blog/\\'});render()">新增作品</button></div></div>').join('') +
         '<div class="actions"><button class="primary" onclick="saveSection(\\'home\\', state.home)">儲存作品輪播</button></div>';
     }
@@ -324,7 +324,7 @@ function html() {
     }
 
     function renderClassrooms() {
-      el('app').innerHTML = '<div class="card"><h2>教室資訊</h2><p class="help">以城市分類；每個城市可新增多個教室。</p></div>' +
+      el('app').innerHTML = '<div class="card"><h2>教室資訊</h2></div>' +
         state.classrooms.map((group, gi) => '<div class="card"><div class="item-header"><h3>'+esc(group.city || '新城市')+'</h3><button class="danger" onclick="state.classrooms.splice('+gi+',1);render()">刪除城市</button></div><div class="row">'+field('classrooms.'+gi+'.city','城市')+field('classrooms.'+gi+'.summary','摘要')+'</div><div class="list">'+group.schools.map((_, si) => schoolEditor(gi, si)).join('')+'</div><div class="actions"><button onclick="state.classrooms['+gi+'].schools.push({name:\\'新教室\\',teacher:\\'\\',address:\\'\\',phone:\\'\\',note:\\'\\'});render()">新增教室</button></div></div>').join('') +
         '<div class="actions"><button onclick="state.classrooms.push({city:\\'新城市\\',summary:\\'\\',schools:[]});render()">新增城市</button><button class="primary" onclick="saveSection(\\'classrooms\\', state.classrooms)">儲存教室資訊</button></div>';
     }
@@ -335,9 +335,40 @@ function html() {
     }
 
     function renderContact() {
-      el('app').innerHTML = '<div class="card"><h2>聯絡我們</h2><div class="row">'+
-        ['address','phone','facebook','instagram','shopee','email'].map(k => field('contact.'+k, k)).join('') +
-        '</div><div class="actions"><button class="primary" onclick="saveSection(\\'contact\\', state.contact)">儲存聯絡資訊</button></div></div>';
+      ensureContactSocialLinks();
+      el('app').innerHTML = '<div class="card"><h2>聯絡我們</h2><div class="contact-admin-grid"><div class="item"><h3>左側聯絡資訊</h3>'+
+        field('contact.address','地址') + field('contact.phone','電話') + field('contact.email','Email') +
+        '</div><div class="item"><h3>右側社群 icon 連結</h3><div class="list">' +
+        state.contact.socialLinks.map((_, i) => socialLinkEditor(i)).join('') +
+        '</div><div class="actions"><button onclick="state.contact.socialLinks.push({label:\\'新社群連結\\',type:\\'facebook\\',url:\\'\\'});render()">新增社群連結</button></div></div></div><div class="actions"><button class="primary" onclick="saveContact()">儲存聯絡資訊</button></div></div>';
+    }
+
+    function ensureContactSocialLinks() {
+      if (Array.isArray(state.contact.socialLinks) && state.contact.socialLinks.length) return;
+      state.contact.socialLinks = [
+        { label:'水晶花藝 Facebook', type:'facebook', url: state.contact.facebook || '' },
+        { label:'工藝盆栽 Facebook', type:'facebook', url: state.contact.facebook || '' },
+        { label:'水晶花藝 Instagram', type:'instagram', url: state.contact.instagram || '' },
+        { label:'工藝盆栽 Instagram', type:'instagram', url: state.contact.instagram || '' },
+        { label:'蝦皮賣場', type:'shopee', url: state.contact.shopee || '' }
+      ];
+    }
+
+    function socialLinkEditor(i) {
+      const base = 'contact.socialLinks.'+i;
+      const currentType = get(base+'.type') || 'facebook';
+      return '<div class="item"><div class="item-header"><h3>icon '+(i+1)+'</h3><button class="danger" onclick="state.contact.socialLinks.splice('+i+',1);render()">刪除</button></div>' +
+        field(base+'.label','顯示名稱') +
+        '<label>icon 類型<select data-path="'+base+'.type" onchange="setByInput(this)"><option value="facebook" '+(currentType==='facebook'?'selected':'')+'>Facebook</option><option value="instagram" '+(currentType==='instagram'?'selected':'')+'>Instagram</option><option value="shopee" '+(currentType==='shopee'?'selected':'')+'>蝦皮</option></select></label>' +
+        field(base+'.url','網址') + '</div>';
+    }
+
+    async function saveContact() {
+      ensureContactSocialLinks();
+      state.contact.facebook = state.contact.socialLinks.find((link) => link.type === 'facebook')?.url || state.contact.facebook || '';
+      state.contact.instagram = state.contact.socialLinks.find((link) => link.type === 'instagram')?.url || state.contact.instagram || '';
+      state.contact.shopee = state.contact.socialLinks.find((link) => link.type === 'shopee')?.url || state.contact.shopee || '';
+      await saveSection('contact', state.contact);
     }
 
     function renderBlog() {
