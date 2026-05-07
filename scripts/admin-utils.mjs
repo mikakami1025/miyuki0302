@@ -119,6 +119,7 @@ export function serializeMdxArticle(article) {
     `cover: ${quoteFrontmatter(article.cover)}\n` +
     `category: ${quoteFrontmatter(article.category)}\n` +
     `tags: ${JSON.stringify(tags)}\n` +
+    (article.sourceUrl ? `sourceUrl: ${quoteFrontmatter(article.sourceUrl)}\n` : '') +
     `draft: ${article.draft ? 'true' : 'false'}\n` +
     `---\n\n${body}\n`;
 }
