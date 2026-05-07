@@ -1,7 +1,7 @@
 {
-  "name": "Miyuki?????? | ?????????",
-  "shortName": "Miyuki??????",
-  "description": "???????????????????????,??????????????",
+  "name": "Miyuki日本水晶花藝 | アメリカンフラワー",
+  "shortName": "Miyuki日本水晶花藝",
+  "description": "Miyuki日本水晶花藝專注於日本水晶花、工藝盆栽與日系手作課程，分享晶透花藝作品、教室資訊、學習紀錄與手作植物美學。",
   "locale": "zh-TW",
   "logo": "assets/brand/logo.jpg",
   "background": {
@@ -9,29 +9,11 @@
     "overlay": "rgba(255, 250, 246, 0.84)"
   },
   "nav": [
-    {
-      "label": "??",
-      "href": "/"
-    },
-    {
-      "label": "????",
-      "href": "/#about"
-    },
-    {
-      "label": "??",
-      "href": "/#works"
-    },
-    {
-      "label": "????",
-      "href": "/#classrooms"
-    },
-    {
-      "label": "??",
-      "href": "/blog/"
-    },
-    {
-      "label": "????",
-      "href": "/#contact"
-    }
+    { "label": "首頁", "href": "/" },
+    { "label": "關於我們", "href": "/#about" },
+    { "label": "作品", "href": "/#works" },
+    { "label": "教室資訊", "href": "/#classrooms" },
+    { "label": "文章", "href": "/blog/" },
+    { "label": "聯絡我們", "href": "/#contact" }
   ]
 }
