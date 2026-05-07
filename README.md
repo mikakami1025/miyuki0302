@@ -11,6 +11,42 @@ npm run dev
 
 開發伺服器通常會在 `http://localhost:4321/desktop-tutorial/`。
 
+## 本機內容管理 UI
+
+如果不想手動改檔案，可以啟動本機管理介面：
+
+```bash
+npm run admin
+```
+
+打開：
+
+```txt
+http://127.0.0.1:8787/admin
+```
+
+這個 UI 可以直接修改：
+
+- 網站名稱、SEO 描述、Logo、背景圖
+- 主色、字型、字級、間距、卡片與陰影
+- 首頁輪播圖、標題、連結與排序
+- 關於我們
+- 日本水晶花藝 / 工藝盆栽作品輪播
+- 教室資訊
+- 聯絡方式
+- 文章新增、編輯、封面上傳、草稿狀態
+
+管理 UI 只在本機執行，不會部署成公開後台。儲存後會直接更新專案檔案，例如 `src/data/*.json`、`src/config/site.json`、`src/content/blog/*.mdx`、`public/assets/`。
+
+建議使用流程：
+
+```bash
+npm run dev
+npm run admin
+```
+
+一邊在 `http://127.0.0.1:8787/admin` 修改內容，一邊在 `http://localhost:4321/desktop-tutorial/` 看網站效果。
+
 ## 建置與預覽
 
 ```bash
@@ -35,10 +71,10 @@ env:
 
 ## 最常修改檔案
 
-- `src/config/site.ts`：網站名稱、SEO 描述、logo、背景圖、導覽列。
-- `src/data/home.ts`：首頁輪播、關於我們、作品輪播。
-- `src/data/classrooms.ts`：教室資訊。
-- `src/data/contact.ts`：地址、電話、社群、蝦皮。
+- `src/config/site.json`：網站名稱、SEO 描述、logo、背景圖、導覽列。
+- `src/data/home.json`：首頁輪播、關於我們、作品輪播。
+- `src/data/classrooms.json`：教室資訊。
+- `src/data/contact.json`：地址、電話、社群、蝦皮。
 - `src/content/blog/`：文章內容。
 - `src/styles/global.css`：主色、字型、字級、卡片、間距、陰影。
 - `public/assets/`：所有圖片。
@@ -69,12 +105,12 @@ draft: false
 ## 如何替換背景
 
 1. 把新背景圖放到 `public/assets/backgrounds/`。
-2. 修改 `src/config/site.ts`：
+2. 修改 `src/config/site.json`，或使用本機管理 UI 的「網站設定」頁：
 
-```ts
-background: {
-  image: 'assets/backgrounds/site-bg.jpg',
-  overlay: 'rgba(255, 250, 246, 0.84)'
+```json
+"background": {
+  "image": "assets/backgrounds/site-bg.jpg",
+  "overlay": "rgba(255, 250, 246, 0.84)"
 }
 ```
 
@@ -82,7 +118,7 @@ background: {
 
 ## 如何替換輪播圖
 
-首頁輪播在 `src/data/home.ts` 的 `heroSlides`。
+首頁輪播在 `src/data/home.json` 的 `heroSlides`，也可以用本機管理 UI 的「首頁輪播」頁直接上傳與排序。
 
 ```ts
 {
@@ -96,7 +132,7 @@ background: {
 
 ## 如何更新教室資訊
 
-修改 `src/data/classrooms.ts`：
+修改 `src/data/classrooms.json`，也可以用本機管理 UI 的「教室資訊」頁：
 
 ```ts
 {

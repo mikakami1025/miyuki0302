@@ -6,10 +6,10 @@
 
 1. 建立 Astro 專案。
 2. 將常改內容集中到：
-   - `src/config/site.ts`
-   - `src/data/home.ts`
-   - `src/data/classrooms.ts`
-   - `src/data/contact.ts`
+   - `src/config/site.json`
+   - `src/data/home.json`
+   - `src/data/classrooms.json`
+   - `src/data/contact.json`
    - `src/content/blog/`
    - `public/assets/`
 3. 首頁區塊保持模組化：hero、about、works、classrooms、contact。
@@ -17,7 +17,17 @@
 
 ## 套用品牌
 
-修改 `src/config/site.ts`：
+修改 `src/config/site.json`，或啟動本機管理 UI：
+
+```bash
+npm run admin
+```
+
+然後打開：
+
+```txt
+http://127.0.0.1:8787/admin
+```
 
 - `name`：完整品牌名稱
 - `shortName`：導覽列短名稱
@@ -43,7 +53,7 @@ public/assets/works/craft-bonsai/
 public/assets/blog/
 ```
 
-替換圖片後，到 `src/data/home.ts` 或文章 frontmatter 修改路徑。
+替換圖片後，到 `src/data/home.json` 或文章 frontmatter 修改路徑。更簡單的做法是使用本機管理 UI 直接上傳並套用。
 
 ## 新增文章
 
@@ -76,11 +86,11 @@ draft: false
 
 ## 維護資料
 
-- 首頁輪播：`src/data/home.ts` 的 `heroSlides`
-- 關於我們：`src/data/home.ts` 的 `aboutContent`
-- 作品輪播：`src/data/home.ts` 的 `workCollections`
-- 教室資訊：`src/data/classrooms.ts`
-- 聯絡方式：`src/data/contact.ts`
+- 首頁輪播：管理 UI「首頁輪播」，或 `src/data/home.json` 的 `heroSlides`
+- 關於我們：管理 UI「關於我們」，或 `src/data/home.json` 的 `aboutContent`
+- 作品輪播：管理 UI「作品輪播」，或 `src/data/home.json` 的 `workCollections`
+- 教室資訊：管理 UI「教室資訊」，或 `src/data/classrooms.json`
+- 聯絡方式：管理 UI「聯絡我們」，或 `src/data/contact.json`
 - 主色、字型、間距、卡片與陰影：`src/styles/global.css`
 
 ## 部署

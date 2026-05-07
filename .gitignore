@@ -3,6 +3,7 @@ dist/
 .astro/
 .npm-cache/
 dev-server*.log
+admin-server*.log
 .env
 .DS_Store
 .superpowers/
