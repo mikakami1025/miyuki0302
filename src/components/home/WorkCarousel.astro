@@ -33,7 +33,7 @@ const hrefFor = (href: string) => `${base}${href.replace(/^\/+/, '')}`;
   </div>
   <div class="work-track" data-carousel-track>
     {collection.slides.map((slide) => (
-      <a class="work-slide" href={hrefFor(slide.link)}>
+      <a class="work-slide" href={hrefFor(slide.link)} style={`--slide-image: url('${asset(slide.image)}')`}>
         <img src={asset(slide.image)} alt={slide.title} loading="lazy" />
         <span>{slide.title}</span>
       </a>

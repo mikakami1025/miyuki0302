@@ -13,7 +13,7 @@ const hrefFor = (href: string) => href.startsWith('#') ? href : `${base}${href.r
   </div>
   <div class="hero-track" data-carousel-track>
     {heroSlides.map((slide) => (
-      <article class="hero-slide">
+      <article class="hero-slide" style={`--slide-image: url('${asset(slide.image)}')`}>
         <img src={asset(slide.image)} alt={slide.title} loading="eager" />
         <div class="hero-content">
           <p class="eyebrow">{slide.eyebrow}</p>

@@ -1,8 +1,35 @@
 {
   "address": "高雄市三民區明仁路16號",
   "phone": "0929-320-990",
-  "facebook": "https://www.facebook.com/",
-  "instagram": "https://www.instagram.com/",
-  "shopee": "https://shopee.tw/",
-  "email": "hello@example.com"
+  "facebook": "https://www.facebook.com/Miyuki0302/",
+  "instagram": "https://www.instagram.com/miyuki_lin0302/",
+  "shopee": "https://shopee.tw/hhh3062417",
+  "email": "miyuki@hegroup.com.tw",
+  "socialLinks": [
+    {
+      "label": "水晶花藝 Facebook",
+      "type": "facebook",
+      "url": "https://www.facebook.com/Miyuki0302/"
+    },
+    {
+      "label": "工藝盆栽 Facebook",
+      "type": "facebook",
+      "url": "https://www.facebook.com/Miyuki0302/"
+    },
+    {
+      "label": "水晶花藝 Instagram",
+      "type": "instagram",
+      "url": "https://www.instagram.com/miyuki_lin0302/"
+    },
+    {
+      "label": "工藝盆栽 Instagram",
+      "type": "instagram",
+      "url": "https://www.instagram.com/miyuki_lin0302/"
+    },
+    {
+      "label": "蝦皮賣場",
+      "type": "shopee",
+      "url": "https://shopee.tw/hhh3062417"
+    }
+  ]
 }
