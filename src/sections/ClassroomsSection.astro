@@ -1,0 +1,38 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { classrooms } from '@/data/classrooms';
+---
+
+<section class="section classrooms-section" id="classrooms">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Classrooms"
+      title="教室資訊"
+      description="依台灣城市分類，桌面可 hover 展開，手機可點擊展開。"
+    />
+    <div class="classroom-list">
+      {classrooms.map((group) => (
+        <details class="classroom-card">
+          <summary>
+            <span>
+              <strong>{group.city}</strong>
+              <small>{group.summary}</small>
+            </span>
+            <span class="summary-icon">＋</span>
+          </summary>
+          <div class="school-list">
+            {group.schools.map((school) => (
+              <article class="school-item">
+                <h3>{school.name}</h3>
+                <p>{school.teacher}</p>
+                <p>{school.address}</p>
+                <p>{school.phone}</p>
+                <small>{school.note}</small>
+              </article>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '@/config/site';
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const { title = siteConfig.name, description = siteConfig.description } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const asset = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
+const hrefFor = (href: string) => {
+  if (href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+    return href;
+  }
+  return `${base}${href.replace(/^\/+/, '')}`;
+};
+const pageTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.shortName}`;
+---
+
+<!doctype html>
+<html lang={siteConfig.locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <link rel="icon" href={asset(siteConfig.logo)} />
+  </head>
+  <body style={`--site-bg-image: url('${asset(siteConfig.background.image)}'); --site-bg-overlay: ${siteConfig.background.overlay};`}>
+    <header class="site-header">
+      <a class="brand" href={base} aria-label={siteConfig.shortName}>
+        <img src={asset(siteConfig.logo)} alt={siteConfig.shortName} width="48" height="48" />
+        <span>{siteConfig.shortName}</span>
+      </a>
+      <nav class="site-nav" aria-label="主要導覽">
+        {siteConfig.nav.map((item) => <a href={hrefFor(item.href)}>{item.label}</a>)}
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>{siteConfig.name}</p>
+      <p>Crystal flower, craft bonsai and handmade botanical stories.</p>
+    </footer>
+    <script>
+      document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+        const track = carousel.querySelector('[data-carousel-track]');
+        carousel.querySelectorAll('[data-carousel-button]').forEach((button) => {
+          button.addEventListener('click', () => {
+            if (!(track instanceof HTMLElement) || !(button instanceof HTMLElement)) return;
+            const direction = button.dataset.carouselButton === 'next' ? 1 : -1;
+            track.scrollBy({ left: direction * track.clientWidth, behavior: 'smooth' });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.npm-cache/
+dev-server*.log
+.env
+.DS_Store
+.superpowers/

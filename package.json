@@ -1,0 +1,21 @@
+{
+  "name": "miyuki-crystal-flower-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check && cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/sitemap": "^3.5.0",
+    "astro": "^5.13.0",
+    "cross-env": "^10.1.0",
+    "shiki": "^3.23.0",
+    "typescript": "^5.9.2"
+  }
+}

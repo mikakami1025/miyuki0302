@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionHeading from '@/components/common/SectionHeading.astro';
+
+const base = import.meta.env.BASE_URL;
+const asset = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
+const hrefFor = (href: string) => `${base}${href.replace(/^\/+/, '')}`;
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="文章" description="水晶花藝、工藝盆栽與課程作品文章。">
+  <section class="section page-hero">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Blog"
+        title="文章"
+        description="用 Markdown / MDX 管理文章，分類與標籤已預留，適合長期累積 SEO 內容。"
+      />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container blog-grid">
+      {posts.map((post) => (
+        <article class="post-card">
+          <a href={hrefFor(`blog/${post.data.slug}/`)}>
+            <img src={asset(post.data.cover)} alt={post.data.title} loading="lazy" />
+            <div>
+              <p class="post-meta">
+                <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('zh-TW')}</time>
+                <span>{post.data.category}</span>
+              </p>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <ul class="tag-list">
+                {post.data.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

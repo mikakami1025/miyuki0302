@@ -1,0 +1,64 @@
+export const heroSlides = [
+  {
+    title: '晶透花藝，留住四季的光',
+    eyebrow: 'Japanese Crystal Flower',
+    description: '以日本水晶花藝與工藝盆栽，創作能長久陪伴生活的柔和風景。',
+    image: 'assets/hero/hero-01.jpg',
+    link: '#works',
+    linkLabel: '欣賞作品'
+  },
+  {
+    title: '日系手作課程與認證教室',
+    eyebrow: 'Miyuki Flower Studio',
+    description: '從材料、技法到作品美感，為初學者與進階創作者建立穩定學習路徑。',
+    image: 'assets/hero/hero-02.jpg',
+    link: '#classrooms',
+    linkLabel: '查看教室'
+  }
+];
+
+export const aboutContent = {
+  eyebrow: 'About',
+  title: '關於 Miyuki 日本水晶花藝',
+  body: [
+    'Miyuki日本水晶花藝專注於日本水晶花、工藝盆栽與花藝教學，將晶透材質、線條造型與植物姿態融合成細緻作品。',
+    '網站第一版以作品展示、課程資訊與文章內容為核心，未來可持續加入新文章、教室資料、作品系列與品牌視覺。'
+  ]
+};
+
+export const workCollections = [
+  {
+    key: 'crystal-flowers',
+    title: '日本水晶花藝',
+    description: '晶瑩剔透的花瓣、枝葉與線條，適合呈現季節花卉、課程作品與認證創作。',
+    slides: [
+      {
+        image: 'assets/works/crystal-flowers/crystal-01.jpg',
+        title: '晶透花瓣練習',
+        link: '/blog/'
+      },
+      {
+        image: 'assets/works/crystal-flowers/crystal-02.jpg',
+        title: '柔光色彩作品',
+        link: '/blog/'
+      }
+    ]
+  },
+  {
+    key: 'craft-bonsai',
+    title: '工藝盆栽',
+    description: '以手作枝幹、葉片與盆景構圖，呈現長久保存的日式植物美學。',
+    slides: [
+      {
+        image: 'assets/works/craft-bonsai/bonsai-01.jpg',
+        title: '暖色盆景構圖',
+        link: '/blog/'
+      },
+      {
+        image: 'assets/backgrounds/site-bg-warm.jpg',
+        title: '手作盆栽色彩稿',
+        link: '/blog/'
+      }
+    ]
+  }
+];

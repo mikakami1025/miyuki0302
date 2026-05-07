@@ -1,0 +1,18 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { contactInfo } from '@/data/contact';
+---
+
+<section class="section contact-section" id="contact">
+  <div class="container contact-grid">
+    <SectionHeading eyebrow="Contact" title="聯絡我們" align="left" />
+    <div class="contact-card">
+      <a href={`https://maps.google.com/?q=${encodeURIComponent(contactInfo.address)}`}>地址：{contactInfo.address}</a>
+      <a href={`tel:${contactInfo.phone.replace(/[^0-9+]/g, '')}`}>電話：{contactInfo.phone}</a>
+      <a href={contactInfo.facebook}>Facebook</a>
+      <a href={contactInfo.instagram}>Instagram</a>
+      <a href={contactInfo.shopee}>蝦皮賣場</a>
+      <a href={`mailto:${contactInfo.email}`}>Email：{contactInfo.email}</a>
+    </div>
+  </div>
+</section>

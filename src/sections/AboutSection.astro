@@ -1,0 +1,13 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { aboutContent } from '@/data/home';
+---
+
+<section class="section about-section" id="about">
+  <div class="container about-grid">
+    <SectionHeading eyebrow={aboutContent.eyebrow} title={aboutContent.title} align="left" />
+    <div class="about-copy">
+      {aboutContent.body.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </div>
+</section>
