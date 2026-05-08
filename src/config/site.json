@@ -5,15 +5,33 @@
   "locale": "zh-TW",
   "logo": "assets/brand/logo.jpg",
   "background": {
-    "image": "assets/backgrounds/OSharedScreenshot.jpg",
-    "overlay": "rgba(255, 250, 246, 0.84)"
+    "image": "assets/backgrounds/site-bg.jpg",
+    "overlay": "rgba(224, 244, 255, 0.6)"
   },
   "nav": [
-    { "label": "首頁", "href": "/" },
-    { "label": "關於我們", "href": "/#about" },
-    { "label": "作品", "href": "/#works" },
-    { "label": "教室資訊", "href": "/#classrooms" },
-    { "label": "文章", "href": "/blog/" },
-    { "label": "聯絡我們", "href": "/#contact" }
+    {
+      "label": "首頁",
+      "href": "/"
+    },
+    {
+      "label": "關於我們",
+      "href": "/#about"
+    },
+    {
+      "label": "作品",
+      "href": "/#works"
+    },
+    {
+      "label": "教室資訊",
+      "href": "/#classrooms"
+    },
+    {
+      "label": "文章",
+      "href": "/blog/"
+    },
+    {
+      "label": "聯絡我們",
+      "href": "/#contact"
+    }
   ]
 }

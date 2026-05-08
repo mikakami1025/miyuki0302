@@ -276,7 +276,7 @@ function html() {
     }
 
     function renderStyle() {
-      const keys = ['--color-primary','--color-primary-dark','--color-secondary','--color-accent','--color-ink','--color-muted','--font-body','--font-heading','--text-sm','--text-body','--text-md','--text-lg','--text-xl','--space-section','--radius-card','--shadow-card'];
+      const keys = ['--color-primary','--color-primary-dark','--color-secondary','--color-accent','--color-ink','--color-muted','--color-paper','--color-panel','--color-line','--font-body','--font-heading','--text-sm','--text-body','--text-md','--text-lg','--text-xl','--space-section','--radius-card','--shadow-card','--shadow-soft'];
       el('app').innerHTML = '<div class="panel active card"><h2>樣式</h2><div class="row">' +
         keys.map(k => '<label>'+k+'<input value="'+esc(state.cssVars[k] || '')+'" oninput="state.cssVars[\\''+k+'\\']=this.value"></label>').join('') +
         '</div><div class="actions"><button class="primary" onclick="saveSection(\\'styles\\', state.cssVars)">儲存樣式</button></div></div>';
@@ -376,11 +376,11 @@ function html() {
       const current = state.currentArticle || list[0] || blankArticle();
       state.currentArticle = current;
       el('app').innerHTML = '<div class="card"><h2>文章</h2><div class="row"><label>選擇文章<select onchange="state.currentArticle = state.articles.find(a=>a.slug===this.value); render()">'+list.map(a => '<option value="'+esc(a.slug)+'" '+(a.slug===current.slug?'selected':'')+'>'+esc(a.title)+'</option>').join('')+'</select></label><label>發布狀態<select onchange="state.currentArticle.draft=this.value===\\'true\\'"><option value="false" '+(!current.draft?'selected':'')+'>發布</option><option value="true" '+(current.draft?'selected':'')+'>草稿</option></select></label></div><div class="actions"><button onclick="state.currentArticle=blankArticle();render()">新增文章</button></div></div>' +
-        '<div class="card">'+articleField('title','大標')+articleField('slug','網址 slug')+articleField('description','摘要')+'<div class="row">'+articleField('date','日期','date')+articleField('category','分類')+'</div>'+articleTags()+imageFieldArticle('cover','封面圖','blog')+'<label>文章內容 Markdown / MDX<textarea class="body-editor" oninput="state.currentArticle.body=this.value">'+esc(current.body || '')+'</textarea></label><div class="actions"><button class="primary" onclick="saveArticle()">儲存文章</button></div></div>';
+        '<div class="card">'+articleField('title','大標')+articleField('description','摘要')+'<div class="row">'+articleField('date','日期','date')+articleField('category','分類')+'</div>'+articleTags()+imageFieldArticle('cover','封面圖','blog')+'<label>文章內容 Markdown / MDX<textarea id="article-body-editor" class="body-editor" oninput="state.currentArticle.body=this.value">'+esc(current.body || '')+'</textarea></label><div class="actions"><button onclick="uploadArticleBodyImage()">上傳圖片到文章內容</button><button class="primary" onclick="saveArticle()">儲存文章</button></div></div>';
     }
 
     function blankArticle() {
-      return { title:'新文章', slug:'new-post', description:'文章摘要', date:new Date().toISOString().slice(0,10), cover:'assets/blog/sample-cover.jpg', category:'水晶花藝', tags:[], draft:false, body:'請輸入文章內容。' };
+      return { title:'新文章', slug:'', description:'文章摘要', date:new Date().toISOString().slice(0,10), cover:'assets/blog/sample-cover.jpg', category:'水晶花藝', tags:[], draft:false, body:'## 作品導讀\\n\\n請輸入作品導讀。\\n\\n## 作品描述\\n\\n請輸入作品描述。\\n\\n## 作品圖片\\n\\n' };
     }
 
     function articleField(key, label, type='text') {
@@ -408,6 +408,39 @@ function html() {
         state.currentArticle[key] = result.path;
         render();
         toast('封面圖已上傳');
+      };
+      input.click();
+    }
+
+    function insertArticleBodyText(text) {
+      const editor = document.getElementById('article-body-editor');
+      if (!editor) {
+        state.currentArticle.body = (state.currentArticle.body || '') + text;
+        render();
+        return;
+      }
+      const start = editor.selectionStart ?? editor.value.length;
+      const end = editor.selectionEnd ?? editor.value.length;
+      const next = editor.value.slice(0, start) + text + editor.value.slice(end);
+      state.currentArticle.body = next;
+      editor.value = next;
+      editor.focus();
+      const cursor = start + text.length;
+      editor.setSelectionRange(cursor, cursor);
+    }
+
+    async function uploadArticleBodyImage() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = async () => {
+        const file = input.files[0];
+        if (!file) return;
+        const dataUrl = await new Promise((resolve) => { const r = new FileReader(); r.onload = () => resolve(r.result); r.readAsDataURL(file); });
+        const result = await api('/api/upload', { method:'POST', body: JSON.stringify({ folder:'blog', filename: file.name, dataUrl }) });
+        const alt = (state.currentArticle.title || 'Miyuki 水晶花藝作品').replace(/[<>"]/g, '');
+        insertArticleBodyText('\\n\\n<img src={import.meta.env.BASE_URL + "'+result.path+'"} alt="'+alt+'" />\\n');
+        toast('文章圖片已上傳並插入');
       };
       input.click();
     }

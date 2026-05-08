@@ -49,6 +49,15 @@ export function sanitizeSlug(value) {
     .slice(0, 80) || 'new-post';
 }
 
+export function autoArticleSlug(article) {
+  const hasManualSlug = String(article.slug || '').trim();
+  if (hasManualSlug) return sanitizeSlug(hasManualSlug);
+  const titleSlug = sanitizeSlug(article.title);
+  if (titleSlug !== 'new-post') return titleSlug;
+  const datePart = String(article.date || new Date().toISOString().slice(0, 10)).replace(/[^0-9]/g, '') || 'post';
+  return `post-${datePart}-${Date.now().toString(36).slice(-5)}`;
+}
+
 export function sanitizeAssetFilename(filename) {
   const parsed = path.parse(String(filename || 'image.jpg').replace(/\\/g, '/'));
   const ext = (parsed.ext || '.jpg').toLowerCase().replace(/[^.a-z0-9]/g, '') || '.jpg';
@@ -106,7 +115,7 @@ export function quoteFrontmatter(value) {
 }
 
 export function serializeMdxArticle(article) {
-  const slug = sanitizeSlug(article.slug || article.title);
+  const slug = autoArticleSlug(article);
   const tags = Array.isArray(article.tags)
     ? article.tags.map((tag) => String(tag).trim()).filter(Boolean)
     : String(article.tags || '').split(',').map((tag) => tag.trim()).filter(Boolean);
@@ -136,7 +145,7 @@ export async function readArticles() {
 }
 
 export async function writeArticle(article, oldSlug = '') {
-  const slug = sanitizeSlug(article.slug || article.title);
+  const slug = autoArticleSlug(article);
   const dir = resolveProjectPath(DATA_FILES.blogDir);
   await fs.mkdir(dir, { recursive: true });
   const nextFile = `${slug}.mdx`;
