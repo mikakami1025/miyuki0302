@@ -2,7 +2,7 @@
   "heroSlides": [
     {
       "title": "晶透花藝，留住四季的光",
-      "eyebrow": "Japanese Crystal Flower",
+      "eyebrow": "American Flower",
       "description": "以日本水晶花藝與工藝盆栽，創作能長久陪伴生活的柔和風景。",
       "image": "assets/optimized/hero/miyuki-crystal-flower-gallery.jpg",
       "link": "#contact",
@@ -36,6 +36,18 @@
   "aboutContent": {
     "eyebrow": "About",
     "title": "Miyuki日本水晶花藝 | アメリカンフラワー",
+    "agencyInfo": [
+      "日本トウペDIP材料まどかフラワー台灣總代理",
+      "日本まどかフラワーぐるうぷ",
+      "台灣總代理",
+      "代理項目：",
+      "アメリカンフラワー(水晶花)",
+      "レインボーフラワー(彩虹花)",
+      "パンフラワー (日清/MADOKA黏土)",
+      "日清製粉粘土類",
+      "日本MADOKA CLAY教材製作所粘土",
+      "日本デキシー花藝膠帶"
+    ],
     "body": [
       "Miyuki教授於2012年在台灣代理了日本的水晶花藝(又稱美國花American flower)的材料與技術。",
       "它不是一般我們知曉的水晶，而是藉由從美國引進日本再由日本調製的特殊材料Dip(造花液、水晶膠)做出水晶般的作品。",

@@ -5,7 +5,14 @@ import { aboutContent } from '@/data/home';
 
 <section class="section about-section" id="about">
   <div class="container about-grid">
-    <SectionHeading eyebrow={aboutContent.eyebrow} title={aboutContent.title} align="left" />
+    <div class="about-heading">
+      <SectionHeading eyebrow={aboutContent.eyebrow} title={aboutContent.title} align="left" />
+      {'agencyInfo' in aboutContent && Array.isArray(aboutContent.agencyInfo) && (
+        <div class="agency-info">
+          {aboutContent.agencyInfo.map((line) => <p>{line}</p>)}
+        </div>
+      )}
+    </div>
     <div class="about-copy">
       {aboutContent.body.map((paragraph) => <p>{paragraph}</p>)}
     </div>

@@ -380,6 +380,20 @@ p {
   box-shadow: none;
 }
 
+.about-heading .section-heading {
+  margin-bottom: 1.6rem;
+}
+
+.agency-info {
+  display: grid;
+  gap: 0.28rem;
+  padding-top: 1.15rem;
+  color: var(--color-primary-dark);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  border-top: 1px solid rgba(104, 119, 99, 0.18);
+}
+
 .about-copy p {
   padding-bottom: 1.15rem;
   border-bottom: 1px solid rgba(104, 119, 99, 0.16);
