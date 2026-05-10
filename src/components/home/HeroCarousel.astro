@@ -4,6 +4,14 @@ import { heroSlides } from '@/data/home';
 const base = import.meta.env.BASE_URL;
 const asset = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
 const hrefFor = (href: string) => href.startsWith('#') ? href : `${base}${href.replace(/^\/+/, '')}`;
+const slides = heroSlides.map((slide) => {
+  const commaIndex = slide.title.indexOf('，');
+  return {
+    ...slide,
+    titleBeforeBreak: commaIndex >= 0 ? slide.title.slice(0, commaIndex + 1) : slide.title,
+    titleAfterBreak: commaIndex >= 0 ? slide.title.slice(commaIndex + 1) : ''
+  };
+});
 ---
 
 <section class="hero" data-carousel aria-label="首頁輪播圖">
@@ -12,12 +20,15 @@ const hrefFor = (href: string) => href.startsWith('#') ? href : `${base}${href.r
     <button type="button" data-carousel-button="next" aria-label="下一張">›</button>
   </div>
   <div class="hero-track" data-carousel-track>
-    {heroSlides.map((slide) => (
+    {slides.map((slide) => (
       <article class="hero-slide" style={`--slide-image: url('${asset(slide.image)}')`}>
         <img src={asset(slide.image)} alt={slide.title} loading="eager" />
         <div class="hero-content">
           <p class="eyebrow">{slide.eyebrow}</p>
-          <h1>{slide.title}</h1>
+          <h1>
+            {slide.titleBeforeBreak}
+            {slide.titleAfterBreak && <><br />{slide.titleAfterBreak}</>}
+          </h1>
           <p>{slide.description}</p>
           <a class="button" href={hrefFor(slide.link)}>{slide.linkLabel}</a>
         </div>

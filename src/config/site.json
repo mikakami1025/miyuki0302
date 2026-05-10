@@ -6,7 +6,7 @@
   "logo": "assets/brand/logo.jpg",
   "background": {
     "image": "assets/backgrounds/ig_0c801dc322c87bba0169fde466fb0c81918ccbbc2065d5cbc4.png",
-    "overlay": "rgba(224, 244, 255, 0.6)"
+    "overlay": "rgba(247, 244, 238, 0.88)"
   },
   "nav": [
     {
