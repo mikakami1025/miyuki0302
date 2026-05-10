@@ -23,7 +23,7 @@ jobs:
           node-version: 22
         env:
           SITE: https://mikakami1025.github.io
-          BASE_PATH: /desktop-tutorial
+          BASE_PATH: /miyuki0302
 
   deploy:
     needs: build
