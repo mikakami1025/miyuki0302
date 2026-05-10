@@ -1,14 +1,17 @@
 ---
-import SectionHeading from '@/components/common/SectionHeading.astro';
 import { classrooms } from '@/data/classrooms';
 ---
 
 <section class="section classrooms-section" id="classrooms">
   <div class="container">
-    <SectionHeading
-      eyebrow="Madoka Flower Design School"
-      title="日本MADOKA花藝設計學院認證教室資訊"
-    />
+    <div class="section-heading section-heading--center">
+      <p class="eyebrow">Madoka Flower Design School</p>
+      <h2>
+        日本MADOKA
+        <br />
+        花藝設計學院認證教室資訊
+      </h2>
+    </div>
     <div class="classroom-list">
       {classrooms.map((group) => (
         <details class="classroom-card">

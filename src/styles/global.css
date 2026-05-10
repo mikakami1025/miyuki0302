@@ -379,7 +379,7 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   gap: clamp(2.2rem, 7vw, 6.5rem);
-  align-items: stretch;
+  align-items: start;
 }
 
 .about-heading {
@@ -391,8 +391,6 @@ p {
 .about-copy {
   display: grid;
   gap: 1.2rem;
-  align-content: space-between;
-  align-self: stretch;
   padding: 0;
   color: var(--color-muted);
   background: transparent;
@@ -407,7 +405,6 @@ p {
 .agency-info {
   display: grid;
   gap: 0.28rem;
-  align-content: space-between;
   padding-top: 1.15rem;
   color: var(--color-primary-dark);
   font-size: 0.95rem;
