@@ -115,7 +115,10 @@ const schemaGraph = {
     <header class="site-header">
       <a class="brand" href={base} aria-label={siteConfig.shortName}>
         <img src={asset(siteConfig.logo)} alt={siteConfig.shortName} width="48" height="48" />
-        <span>{siteConfig.shortName}</span>
+        <span class="brand-text">
+          <span class="brand-name">Miyuki日本水晶花藝</span>
+          <span class="brand-subtitle">アメリカンフラワー</span>
+        </span>
       </a>
       <nav class="site-nav" aria-label="主要導覽">
         {siteConfig.nav.map((item) => <a href={hrefFor(item.href)}>{item.label}</a>)}

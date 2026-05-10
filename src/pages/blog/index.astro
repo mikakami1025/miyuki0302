@@ -10,12 +10,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="文章" description="水晶花藝、工藝盆栽與課程作品文章。">
+<BaseLayout title="Miyuki老師與學生們的作品" description="水晶花藝、工藝盆栽與課程作品文章。">
   <section class="section page-hero">
     <div class="container">
       <SectionHeading
         eyebrow="Blog"
-        title="文章"
+        title="Miyuki老師與學生們的作品"
         level="h1"
       />
     </div>
@@ -25,7 +25,9 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       {posts.map((post) => (
         <article class="post-card">
           <a href={hrefFor(`blog/${post.data.slug}/`)}>
-            <img src={asset(post.data.cover)} alt={`${post.data.title}｜Miyuki日本水晶花藝作品文章封面`} width="1200" height="900" loading="lazy" decoding="async" />
+            <span class="post-image-frame">
+              <img src={asset(post.data.cover)} alt={`${post.data.title}｜Miyuki日本水晶花藝作品文章封面`} width="1200" height="900" loading="lazy" decoding="async" />
+            </span>
             <div>
               <p class="post-meta">
                 <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('zh-TW')}</time>

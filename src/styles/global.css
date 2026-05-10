@@ -119,8 +119,20 @@ a.button {
   border-radius: 0;
 }
 
-.brand span {
+.brand-text {
+  display: grid;
+  gap: 0.1rem;
+  line-height: 1.25;
+}
+
+.brand-name {
   font-size: 0.98rem;
+}
+
+.brand-subtitle {
+  color: var(--color-muted);
+  font-size: 0.74rem;
+  font-weight: 500;
 }
 
 .site-nav {
@@ -367,12 +379,20 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   gap: clamp(2.2rem, 7vw, 6.5rem);
-  align-items: start;
+  align-items: stretch;
+}
+
+.about-heading {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-self: stretch;
 }
 
 .about-copy {
   display: grid;
   gap: 1.2rem;
+  align-content: space-between;
+  align-self: stretch;
   padding: 0;
   color: var(--color-muted);
   background: transparent;
@@ -387,6 +407,7 @@ p {
 .agency-info {
   display: grid;
   gap: 0.28rem;
+  align-content: space-between;
   padding-top: 1.15rem;
   color: var(--color-primary-dark);
   font-size: 0.95rem;
@@ -715,10 +736,32 @@ p {
   text-decoration: none;
 }
 
+.post-image-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: clamp(230px, 24vw, 330px);
+  overflow: hidden;
+  background: rgba(247, 244, 238, 0.92);
+}
+
+.post-image-frame::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 64px;
+  content: "";
+  background: linear-gradient(180deg, rgba(247, 244, 238, 0.86), rgba(247, 244, 238, 0.99) 45%, rgba(247, 244, 238, 1));
+  pointer-events: none;
+}
+
 .post-card img {
   width: 100%;
+  height: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   filter: saturate(0.92);
 }
 
@@ -906,6 +949,10 @@ p {
   .work-gallery {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .post-image-frame {
+    height: clamp(240px, 64vw, 360px);
+  }
 }
 
 @media (max-width: 560px) {
@@ -917,7 +964,7 @@ p {
     padding-inline: 1rem;
   }
 
-  .brand span {
+  .brand-text {
     white-space: normal;
   }
 
