@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '@/config/site';
+import { contactInfo } from '@/data/contact';
 
 type Props = {
   title?: string;
@@ -26,6 +27,65 @@ const hrefFor = (href: string) => {
 const pageTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.shortName}`;
 const canonicalUrl = Astro.url.toString();
 const ogImage = new URL(asset(image), Astro.site || canonicalUrl).toString();
+const siteRoot = new URL(base, Astro.site || canonicalUrl).toString();
+const logoUrl = new URL(asset(siteConfig.logo), Astro.site || canonicalUrl).toString();
+const sameAs = [...new Set((contactInfo.socialLinks ?? [])
+  .map((link) => link.url)
+  .filter(Boolean))];
+const schemaGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteRoot}#person`,
+      name: '林美雪(Miyuki)',
+      alternateName: ['Miyuki', siteConfig.shortName],
+      jobTitle: '日本水晶花藝教授',
+      url: siteRoot,
+      image: logoUrl,
+      email: contactInfo.email,
+      telephone: contactInfo.phone,
+      sameAs,
+      worksFor: { '@id': `${siteRoot}#educational-organization` },
+      knowsAbout: ['日本水晶花藝', 'アメリカンフラワー', 'American Flower', '工藝盆栽', 'MADOKA水晶花國際認證']
+    },
+    {
+      '@type': 'EducationalOrganization',
+      '@id': `${siteRoot}#educational-organization`,
+      name: siteConfig.name,
+      url: siteRoot,
+      logo: logoUrl,
+      email: contactInfo.email,
+      telephone: contactInfo.phone,
+      sameAs,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: contactInfo.address,
+        addressLocality: '高雄市',
+        addressRegion: '高雄市',
+        addressCountry: 'TW'
+      }
+    },
+    {
+      '@type': 'LocalBusiness',
+      '@id': `${siteRoot}#local-business`,
+      name: siteConfig.shortName,
+      url: siteRoot,
+      image: ogImage,
+      email: contactInfo.email,
+      telephone: contactInfo.phone,
+      sameAs,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: contactInfo.address,
+        addressLocality: '高雄市',
+        addressRegion: '高雄市',
+        addressCountry: 'TW'
+      },
+      areaServed: ['台灣', '香港']
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -49,6 +109,7 @@ const ogImage = new URL(asset(image), Astro.site || canonicalUrl).toString();
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaGraph)} />
   </head>
   <body style={`--site-bg-image: url('${asset(siteConfig.background.image)}'); --site-bg-overlay: ${siteConfig.background.overlay};`}>
     <header class="site-header">
@@ -68,49 +129,6 @@ const ogImage = new URL(asset(image), Astro.site || canonicalUrl).toString();
       <p>Crystal flower, craft bonsai and handmade botanical stories.</p>
     </footer>
     <script>
-      document.querySelectorAll('[data-carousel]').forEach((carousel) => {
-        const track = carousel.querySelector('[data-carousel-track]');
-        if (!(track instanceof HTMLElement)) return;
-
-        const slideCount = track.children.length;
-        if (slideCount < 2) return;
-
-        const scrollToSlide = (index: number) => {
-          track.scrollTo({
-            left: index * track.clientWidth,
-            behavior: 'smooth'
-          });
-        };
-
-        const currentIndex = () => Math.round(track.scrollLeft / Math.max(track.clientWidth, 1));
-
-        const go = (direction: number) => {
-          const nextIndex = (currentIndex() + direction + slideCount) % slideCount;
-          scrollToSlide(nextIndex);
-        };
-
-        let timer = window.setInterval(() => go(1), 10000);
-        const stop = () => window.clearInterval(timer);
-        const start = () => {
-          stop();
-          timer = window.setInterval(() => go(1), 10000);
-        };
-
-        carousel.querySelectorAll('[data-carousel-button]').forEach((button) => {
-          button.addEventListener('click', () => {
-            if (!(button instanceof HTMLElement)) return;
-            const direction = button.dataset.carouselButton === 'next' ? 1 : -1;
-            go(direction);
-            start();
-          });
-        });
-
-        carousel.addEventListener('mouseenter', stop);
-        carousel.addEventListener('mouseleave', start);
-        carousel.addEventListener('focusin', stop);
-        carousel.addEventListener('focusout', start);
-      });
-
       document.querySelectorAll('.classroom-card').forEach((card) => {
         card.addEventListener('toggle', () => {
           if (!(card instanceof HTMLDetailsElement) || !card.open) return;

@@ -28,7 +28,7 @@ const asset = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
       <ul class="tag-list tag-list--center">
         {post.data.tags.map((tag) => <li>{tag}</li>)}
       </ul>
-      <img src={asset(post.data.cover)} alt={post.data.title} />
+      <img src={asset(post.data.cover)} alt={`${post.data.title}｜Miyuki日本水晶花藝作品文章封面`} width="1200" height="900" loading="eager" decoding="async" />
     </header>
     <div class="article-body">
       <Content />

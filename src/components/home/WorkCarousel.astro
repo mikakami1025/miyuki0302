@@ -20,21 +20,17 @@ const asset = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
 const hrefFor = (href: string) => `${base}${href.replace(/^\/+/, '')}`;
 ---
 
-<article class="work-panel" data-carousel>
+<article class="work-panel">
   <div class="work-panel__header">
     <div>
       <h3>{collection.title}</h3>
       <p>{collection.description}</p>
     </div>
-    <div class="mini-actions">
-      <button type="button" data-carousel-button="prev" aria-label={`${collection.title}上一張`}>‹</button>
-      <button type="button" data-carousel-button="next" aria-label={`${collection.title}下一張`}>›</button>
-    </div>
   </div>
-  <div class="work-track" data-carousel-track>
+  <div class="work-gallery">
     {collection.slides.map((slide) => (
-      <a class="work-slide" href={hrefFor(slide.link)} style={`--slide-image: url('${asset(slide.image)}')`}>
-        <img src={asset(slide.image)} alt={slide.title} loading="lazy" />
+      <a class="work-artwork" href={hrefFor(slide.link)}>
+        <img src={asset(slide.image)} alt={`${slide.title}｜${collection.title}作品`} width="1000" height="760" loading="lazy" decoding="async" />
         <span>{slide.title}</span>
       </a>
     ))}

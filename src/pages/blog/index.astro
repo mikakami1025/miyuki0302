@@ -16,6 +16,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       <SectionHeading
         eyebrow="Blog"
         title="文章"
+        level="h1"
       />
     </div>
   </section>
@@ -24,7 +25,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       {posts.map((post) => (
         <article class="post-card">
           <a href={hrefFor(`blog/${post.data.slug}/`)}>
-            <img src={asset(post.data.cover)} alt={post.data.title} loading="lazy" />
+            <img src={asset(post.data.cover)} alt={`${post.data.title}｜Miyuki日本水晶花藝作品文章封面`} width="1200" height="900" loading="lazy" decoding="async" />
             <div>
               <p class="post-meta">
                 <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('zh-TW')}</time>

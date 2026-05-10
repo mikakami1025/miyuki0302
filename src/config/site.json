@@ -5,7 +5,7 @@
   "locale": "zh-TW",
   "logo": "assets/brand/logo.jpg",
   "background": {
-    "image": "assets/backgrounds/ig_0c801dc322c87bba0169fde466fb0c81918ccbbc2065d5cbc4.png",
+    "image": "assets/optimized/backgrounds/miyuki-gallery-bg.jpg",
     "overlay": "rgba(247, 244, 238, 0.88)"
   },
   "nav": [

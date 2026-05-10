@@ -35,6 +35,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   color: var(--color-ink);
   font-family: var(--font-body);
   font-size: var(--text-body);
@@ -206,6 +207,7 @@ h3 {
   font-family: var(--font-heading);
   font-weight: 500;
   line-height: 1.18;
+  overflow-wrap: anywhere;
 }
 
 h1 {
@@ -250,9 +252,11 @@ p {
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 75px);
   overflow: hidden;
-  background: linear-gradient(90deg, rgba(247, 244, 238, 0.98), rgba(238, 236, 229, 0.9));
+  min-height: calc(100vh - 75px);
+  background:
+    linear-gradient(90deg, rgba(247, 244, 238, 0.98), rgba(238, 236, 229, 0.74)),
+    var(--site-bg-image) center / cover;
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -264,34 +268,17 @@ p {
   background: rgba(52, 65, 58, 0.22);
 }
 
-.hero-track,
-.work-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.hero-track::-webkit-scrollbar,
-.work-track::-webkit-scrollbar {
-  display: none;
-}
-
-.hero-slide {
+.hero__inner {
   position: relative;
-  flex: 0 0 100%;
-  min-width: 0;
-  max-width: 100%;
-  min-height: calc(100vh - 75px);
   display: grid;
   grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
   align-items: center;
   gap: clamp(2rem, 6vw, 6rem);
+  min-height: calc(100vh - 75px);
   padding: clamp(4rem, 7vw, 6.8rem) max(1.25rem, calc((100vw - 1180px) / 2)) clamp(5.5rem, 8vw, 7rem);
-  scroll-snap-align: start;
 }
 
-.hero-slide::before {
+.hero__inner::before {
   position: absolute;
   top: clamp(3.5rem, 8vw, 7rem);
   right: max(1.25rem, calc((100vw - 1180px) / 2));
@@ -302,27 +289,40 @@ p {
   border: 1px solid rgba(104, 119, 99, 0.18);
 }
 
-.hero-slide::after {
+.hero__inner::after {
   position: absolute;
   top: clamp(4.2rem, 8vw, 7.6rem);
   right: calc(max(1.25rem, (100vw - 1180px) / 2) + 1.1rem);
   bottom: calc(clamp(5rem, 7vw, 6.5rem) + 1.1rem);
   width: min(calc(58vw - 2.2rem), 698px);
   content: "";
-  background: var(--slide-image) center / cover no-repeat;
-  opacity: 0.16;
+  background: var(--site-bg-image) center / cover no-repeat;
+  opacity: 0.12;
   filter: saturate(0.65) contrast(0.92);
 }
 
-.hero-slide > img {
+.hero-artwork {
   position: relative;
   z-index: 2;
   grid-column: 2;
+  min-width: 0;
+  margin: 0;
+}
+
+.hero-artwork img {
   width: 100%;
   height: min(68vh, 720px);
   object-fit: contain;
   object-position: center;
   padding: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.hero-artwork figcaption {
+  margin-top: 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .hero-content {
@@ -344,41 +344,6 @@ p {
   margin: 1.4rem 0 1.8rem;
   color: var(--color-muted);
   font-size: var(--text-md);
-}
-
-.carousel-actions,
-.mini-actions {
-  display: flex;
-  gap: 0.55rem;
-}
-
-.carousel-actions {
-  position: absolute;
-  right: max(1.25rem, calc((100vw - 1180px) / 2));
-  bottom: 1.35rem;
-  z-index: 4;
-}
-
-.carousel-actions button,
-.mini-actions button {
-  width: 42px;
-  height: 42px;
-  color: var(--color-primary-dark);
-  cursor: pointer;
-  background: rgba(255, 253, 248, 0.76);
-  border: 1px solid rgba(52, 65, 58, 0.22);
-  border-radius: 999px;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.carousel-actions button:hover,
-.mini-actions button:hover {
-  background: rgba(255, 253, 248, 1);
-  border-color: rgba(52, 65, 58, 0.42);
-  transform: translateY(-1px);
 }
 
 .about-section {
@@ -427,7 +392,7 @@ p {
 
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: clamp(1.25rem, 3vw, 2.4rem);
 }
 
@@ -449,7 +414,7 @@ p {
 
 .work-panel__header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(220px, 0.34fr) minmax(0, 0.66fr);
   gap: 1.25rem;
   align-items: start;
   padding: clamp(1.45rem, 3vw, 2.3rem);
@@ -464,53 +429,43 @@ p {
   white-space: pre-line;
 }
 
-.work-slide {
-  position: relative;
-  flex: 0 0 100%;
-  min-height: clamp(360px, 48vw, 560px);
-  overflow: hidden;
+.work-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(104, 119, 99, 0.16);
+  border-top: 1px solid rgba(104, 119, 99, 0.16);
+}
+
+.work-artwork {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: clamp(0.85rem, 2vw, 1.1rem);
   color: var(--color-primary-dark);
   text-decoration: none;
-  background: linear-gradient(180deg, rgba(255, 253, 248, 0.18), rgba(227, 231, 222, 0.36));
-  border-top: 1px solid rgba(104, 119, 99, 0.16);
-  scroll-snap-align: start;
+  background: rgba(255, 253, 248, 0.72);
+  transition:
+    background 0.2s ease,
+    filter 0.2s ease;
 }
 
-.work-slide::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background: var(--slide-image) center / cover no-repeat;
-  opacity: 0.1;
-  filter: saturate(0.72);
+.work-artwork:hover {
+  background: rgba(255, 253, 248, 0.94);
 }
 
-.work-slide img {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+.work-artwork img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 5;
   object-fit: contain;
-  padding: clamp(1rem, 3vw, 2rem);
+  filter: saturate(0.92);
 }
 
-.work-slide span {
-  position: absolute;
-  right: 1.15rem;
-  bottom: 1rem;
-  left: 1.15rem;
-  z-index: 3;
-  display: inline-flex;
-  width: fit-content;
-  max-width: calc(100% - 2.3rem);
-  padding: 0.42rem 0.72rem;
+.work-artwork span {
   color: var(--color-primary-dark);
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.45;
-  background: rgba(255, 253, 248, 0.82);
-  border: 1px solid rgba(104, 119, 99, 0.14);
 }
 
 .classroom-list {
@@ -874,18 +829,18 @@ p {
   }
 
   .hero,
-  .hero-slide {
+  .hero__inner {
     min-height: auto;
   }
 
-  .hero-slide {
+  .hero__inner {
     grid-template-columns: 1fr;
     gap: 2rem;
     padding-top: 3.5rem;
   }
 
-  .hero-slide::before,
-  .hero-slide::after {
+  .hero__inner::before,
+  .hero__inner::after {
     top: auto;
     right: 1.25rem;
     bottom: 5.3rem;
@@ -894,16 +849,21 @@ p {
     height: clamp(300px, 56vw, 520px);
   }
 
-  .hero-slide::after {
+  .hero__inner::after {
     right: 2rem;
     bottom: 6.05rem;
     left: 2rem;
     height: clamp(280px, 52vw, 500px);
   }
 
-  .hero-slide > img {
+  .hero-artwork {
     grid-column: 1;
     grid-row: 2;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-artwork img {
     height: clamp(320px, 60vw, 560px);
   }
 
@@ -928,6 +888,10 @@ p {
   .social-icon-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .work-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 560px) {
@@ -947,12 +911,9 @@ p {
     gap: 0.2rem 0.85rem;
   }
 
-  .hero-slide {
-    flex-basis: 100dvw;
-    width: 100dvw;
-    max-width: 100dvw;
+  .hero__inner {
     padding-inline: 1rem;
-    padding-bottom: 6.5rem;
+    padding-bottom: 5.5rem;
   }
 
   .hero-content h1 {
@@ -968,21 +929,17 @@ p {
     min-width: 0;
   }
 
-  .carousel-actions {
-    right: auto;
-    left: 1rem;
+  .hero-artwork img {
+    height: clamp(260px, 74vw, 360px);
+    padding-inline: 0;
   }
 
   .work-panel__header {
     grid-template-columns: 1fr;
   }
 
-  .mini-actions {
-    justify-content: flex-start;
-  }
-
-  .work-slide {
-    min-height: 330px;
+  .work-gallery {
+    grid-template-columns: 1fr;
   }
 
   .social-icon-grid {

@@ -4,33 +4,33 @@
       "title": "晶透花藝，留住四季的光",
       "eyebrow": "Japanese Crystal Flower",
       "description": "以日本水晶花藝與工藝盆栽，創作能長久陪伴生活的柔和風景。",
-      "image": "assets/hero/水晶花作品.jpg",
-      "link": "#works",
-      "linkLabel": "欣賞作品"
+      "image": "assets/optimized/hero/miyuki-crystal-flower-gallery.jpg",
+      "link": "#contact",
+      "linkLabel": "聯絡老師"
     },
     {
       "title": "日系手作課程與認證教室",
       "eyebrow": "Miyuki Flower Studio",
       "description": "從材料、技法到作品美感，為初學者與進階創作者建立穩定學習路徑。",
-      "image": "assets/hero/0003.jpg",
-      "link": "#classrooms",
-      "linkLabel": "查看教室"
+      "image": "assets/optimized/hero/miyuki-flower-studio-work.jpg",
+      "link": "#contact",
+      "linkLabel": "聯絡老師"
     },
     {
       "title": "水晶花盆栽 - 楓葉",
       "eyebrow": "Crystal Bonsai",
       "description": "以日本水晶花技法製作楓葉盆栽，呈現紅、橘、綠層次交錯的秋日樹景與手作盆景質感。",
-      "image": "assets/hero/6.jpg",
-      "link": "#works",
-      "linkLabel": "了解更多"
+      "image": "assets/optimized/hero/crystal-bonsai-maple.jpg",
+      "link": "#contact",
+      "linkLabel": "聯絡老師"
     },
     {
       "title": "工藝盆栽 - 松樹",
       "eyebrow": "Craft Bonsai",
       "description": "手作松針、樹幹與盆景構圖，展現工藝盆栽的日式線條、自然姿態與長久保存的植物美感。",
-      "image": "assets/hero/45614050_699309670455742_9136699102900256768_n.jpg",
-      "link": "#works",
-      "linkLabel": "了解更多"
+      "image": "assets/optimized/hero/craft-bonsai-pine.jpg",
+      "link": "#contact",
+      "linkLabel": "聯絡老師"
     }
   ],
   "aboutContent": {
@@ -50,27 +50,27 @@
       "description": "水晶花是一種晶瑩透亮的樹脂所做成的花、無毒無味能夠長久保存，因為晶瑩剔透、故名為水晶花。\n造花液(Dip ディップ液)延展性佳、色彩鮮豔，故能設計出各式各樣的創作飾品，\n以及千姿百態的花卉盆栽，甚至於栩栩如生的珍禽異獸，也能表露無遺。\n晶瑩剔透的花瓣、枝葉與線條，適合呈現季節花卉、課程作品與認證創作。",
       "slides": [
         {
-          "image": "assets/works/crystal-flowers/0003.jpg",
+          "image": "assets/optimized/works/crystal-flower-petal-study.jpg",
           "title": "晶透花瓣練習",
           "link": "/blog/"
         },
         {
-          "image": "assets/works/crystal-flowers/481812412_1144217334383679_1109512787374054360_n.jpg",
+          "image": "assets/optimized/works/crystal-flower-soft-color.jpg",
           "title": "柔光色彩作品",
           "link": "/blog/"
         },
         {
-          "image": "assets/works/crystal-flowers/61733535_2524996820845839_7024056938275012608_n.jpg",
+          "image": "assets/optimized/works/crystal-flower-pink-chrysanthemum.jpg",
           "title": "日本水晶花藝 - 粉色菊花",
           "link": "/blog/"
         },
         {
-          "image": "assets/works/crystal-flowers/61997799_2524997014179153_628545275241168896_n.jpg",
+          "image": "assets/optimized/works/crystal-flower-pink-ranunculus.jpg",
           "title": "日本水晶花藝 - 粉色陸蓮",
           "link": "/blog/"
         },
         {
-          "image": "assets/works/crystal-flowers/62050801_2524996944179160_119915362350268416_n.jpg",
+          "image": "assets/optimized/works/crystal-flower-white-night-bloom.jpg",
           "title": "日本水晶花藝 - 白色曇花",
           "link": "/blog/"
         }
@@ -82,22 +82,22 @@
       "description": "源於人們對大自然的尊敬與熱愛\n若從藝術的觀點來看，盆栽更是將大自然的景觀濃縮至一個小小盆器裡的裝置藝術。\n工藝盆栽能隨心所欲的表達樹幹的唯美姿態，\n也能讓喜愛盆栽的愛好者們，體驗製作樹\n幹時的樂趣。以手作枝幹、葉片與盆景構圖，呈現長久保存的日式植物美學。",
       "slides": [
         {
-          "image": "assets/works/craft-bonsai/春.jpg",
+          "image": "assets/optimized/works/craft-bonsai-spring.jpg",
           "title": "工藝盆栽作品 - 櫻花",
           "link": "/blog/"
         },
         {
-          "image": "assets/works/craft-bonsai/夏.jpg",
+          "image": "assets/optimized/works/craft-bonsai-summer.jpg",
           "title": "工藝盆栽作品 - 石榴",
           "link": "/blog/"
         },
         {
-          "image": "assets/works/craft-bonsai/秋.jpg",
+          "image": "assets/optimized/works/craft-bonsai-autumn.jpg",
           "title": "工藝盆栽作品 - 楓",
           "link": "/blog/"
         },
         {
-          "image": "assets/works/craft-bonsai/冬.jpg",
+          "image": "assets/optimized/works/craft-bonsai-winter.jpg",
           "title": "工藝盆栽作品 - 梅",
           "link": "/blog/"
         }
